@@ -6,13 +6,13 @@
     :name="name"
     :disabled="disabled"
     :placeholder="placeholder"
-		@click="click"
+    @click="click"
     @input="input"
     @keydown="keydown"
     @keyup="keyup"
     @blur="blur"
     @focus="focus"
-  />
+  >
 </template>
 
 <script>

@@ -5,6 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
     "test:unit": "vitest --environment jsdom"
   },
   "dependencies": {
@@ -15,6 +16,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/test-utils": "^2.0.2",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.4.0",
     "jsdom": "^20.0.0",
     "miragejs": "^0.1.45",
     "sass": "^1.54.5",

@@ -1,6 +1,11 @@
 <template>
   <div class="tag-input-component">
-    <p class="label" v-if="label">{{ label }}</p>
+    <p
+      v-if="label"
+      class="label"
+    >
+      {{ label }}
+    </p>
     <TextInput
       v-model="query"
       placeholder="Add brand..."
@@ -10,12 +15,11 @@
     />
     <div class="tags">
       <span
-        class="tag"
         v-for="item in selected"
         :key="item.id"
+        class="tag"
         @click="removeTag(index)"
-        >{{ item.label }}</span
-      >
+      >{{ item.label }}</span>
     </div>
     <transition>
       <List
@@ -35,21 +39,6 @@ import List from "./List.vue";
 
 export default {
   components: { TextInput, List },
-  data() {
-    return {
-      query: "",
-      index: -1,
-      show: false,
-      items: [],
-      matches: [],
-      selected: [],
-      on_loading: false,
-      loaded: false,
-      failed: false,
-      timer: null,
-      delay: 100,
-    };
-  },
   props: {
     label: {
       type: String,
@@ -66,6 +55,26 @@ export default {
       type: Number,
       default: 10,
     },
+  },
+  data() {
+    return {
+      query: "",
+      index: -1,
+      show: false,
+      items: [],
+      matches: [],
+      selected: [],
+      on_loading: false,
+      loaded: false,
+      failed: false,
+      timer: null,
+      delay: 100,
+    };
+  },
+  mounted() {
+    window.addEventListener("click", (e) => {
+      if (this.show) this.hideSuggestionsList();
+    });
   },
   methods: {
     loadSuggestions() {
@@ -205,11 +214,6 @@ export default {
     inputClick(e) {
       e.stopPropagation();
     },
-  },
-  mounted() {
-    window.addEventListener("click", (e) => {
-      if (this.show) this.hideSuggestionsList();
-    });
   },
 };
 </script>
