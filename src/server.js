@@ -9,9 +9,9 @@ export function makeServer({ environment = "development" } = {}) {
 		},
 
 		routes() {
-			this.namespace = "api"
+			this.namespace = "/api"
 
-			this.get("/movies")
+			this.get("/brands")
 		},
 
 		seeds(server) {

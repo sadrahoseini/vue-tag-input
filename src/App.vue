@@ -1,17 +1,19 @@
 <template>
   <div id="page" class="container">
     <header>
-      <h3><a class="bold" href="https://alibaba.ir"><i class="ip-brands-alibaba-shawl"></i> Alibaba.ir</a></h3>
-      <p>Tag input component code challenge</p>
+      <h2><a class="bold" href="https://alibaba.ir" target="_blank"><i class="ip-brands-alibaba-shawl"></i> Alibaba.ir</a></h2>
+      <p><b>Tag input component</b> code challenge</p>
     </header>
 
     <main>
       <TagInput 
-        label="Select your favorite brands"/>
+        label="Brands selector"
+        fetch-url="/api/brands"
+        identifier="brnads"/>
     </main>
 
     <footer>
-      developed by <a class="bold" href="https://sadrahoseini.ir">Sadra Hoseini</a>
+      developed by <a class="bold" href="https://sadrahoseini.ir" target="_blank">Sadra Hoseini</a>
     </footer>
   </div>
 </template>
@@ -31,9 +33,13 @@ header {
   padding: 20px 0;
 
   p {
-    font-family: 'thin';
+    font-family: 'light';
     margin-top: 5px;
   }
+}
+
+main {
+  padding: 20px 0;
 }
 
 footer {

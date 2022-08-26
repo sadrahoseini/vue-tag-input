@@ -2,7 +2,7 @@
 :root {
   --c-white: #ffffff;
   --c-white-soft: #f8f8f8;
-  --c-white-mute: #f2f2f2;
+  --c-white-mute: #F3F3F3;
 
   --c-black: #181818;
   --c-black-soft: #222222;
@@ -10,7 +10,7 @@
 
   --c-indigo: #2c3e50;
   --c-blue: #0b59a7;
-  --c-orange: #FDB913;
+  --c-orange: #f1ad00;
   --c-gray: #231F20;
 
   --c-divider-light-1: rgba(60, 60, 60, 0.29);
@@ -39,33 +39,33 @@
   --section-gap: 160px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--c-black);
-    --color-background-soft: var(--c-black-soft);
-    --color-background-mute: var(--c-black-mute);
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     --color-background: var(--c-black);
+//     --color-background-soft: var(--c-black-soft);
+//     --color-background-mute: var(--c-black-mute);
 
-    --color-border: var(--c-divider-dark-2);
-    --color-border-hover: var(--c-divider-dark-1);
+//     --color-border: var(--c-divider-dark-2);
+//     --color-border-hover: var(--c-divider-dark-1);
 
-    --color-heading: var(--c-text-dark-1);
-    --color-text: var(--c-text-dark-2);
-  }
-}
+//     --color-heading: var(--c-text-dark-1);
+//     --color-text: var(--c-text-dark-2);
+//   }
+// }
 
 @font-face {
   font-family: 'regular';
-  src: url('./fonts/NotoSans-Regular.ttf')
+  src: url('../fonts/NotoSans-Regular.ttf')
 }
 
 @font-face {
   font-family: 'bold';
-  src: url('./fonts/NotoSans-Bold.ttf')
+  src: url('../fonts/NotoSans-Bold.ttf')
 }
 
 @font-face {
-  font-family: 'thin';
-  src: url('./fonts/NotoSans-Thin.ttf')
+  font-family: 'light';
+  src: url('../fonts/NotoSans-Light.ttf')
 }
 
 * {
@@ -76,16 +76,10 @@
   font-family: 'regular';
 }
 
-.bold,
-.bold * {
-  font-family: 'bold';
-}
-
 body {
   min-height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
+  background: var(--color-background-mute);
   line-height: 1.6;
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -98,14 +92,9 @@ body {
 a {
   color: var(--color-text);
   text-decoration: none;
+  transition: color 0.2s ease;
 
   &:hover {
     color: var(--c-orange)
   }
-}
-
-.container {
-  width: calc(100vw - 40px);
-  max-width: 600px;
-  margin: 0 auto;
 }

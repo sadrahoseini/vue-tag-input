@@ -1,0 +1,12 @@
+@import "./base";
+
+.bold,
+.bold * {
+  font-family: 'bold';
+}
+
+.container {
+  width: calc(100vw - 40px);
+  max-width: 600px;
+  margin: 0 auto;
+}
