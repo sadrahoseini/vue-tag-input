@@ -88,7 +88,6 @@ export default {
       this.$axios
         .get(this.fetchUrl)
         .then(({ data }) => {
-          console.log(data);
           this.items = data[this.identifier];
           this.loaded = true;
           this.failed = false;
@@ -98,7 +97,6 @@ export default {
         .catch((error) => {
           this.failed = true;
           this.on_loading = false;
-          console.log(error);
           console.error(
             "Something goes wrong when app want to fetch brands list...!",
             "Check if your fetch url is valid or not: " + this.fetchUrl
@@ -216,13 +214,11 @@ export default {
           is_new = false;
         }
       }
-			console.log('is new', is_new);
       if (is_new) this.items.push(item);
       this.addSelectedTag(item);
     },
     addSelectedTag(item, event) {
       if (event) event.preventDefault();
-			console.log(item, this.selected, this.selected.findIndex(i => i.slug === item.slug));
       if (item && this.selected.findIndex(i => i.id === item.id) < 0) this.selected.push(item);
       this.query = "";
       this.hideSuggestionsList();
