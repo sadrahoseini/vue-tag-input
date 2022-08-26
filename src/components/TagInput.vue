@@ -6,6 +6,7 @@
     >
       {{ label }}
     </p>
+
     <TextInput
       v-model="query"
       placeholder="Add brand..."
@@ -13,6 +14,7 @@
       @click="inputClick"
       @keydown="keyDown"
     />
+
     <div class="tags">
       <span
         v-for="item in selected"
@@ -21,8 +23,9 @@
         @click="removeTag(index)"
       >{{ item.label }}</span>
     </div>
+
     <transition>
-      <List
+      <DropDown
         v-if="show"
         :items="matches"
         :active-index="index"
@@ -35,13 +38,14 @@
 
 <script>
 import TextInput from "./TextInput.vue";
-import List from "./List.vue";
+import DropDown from "./DropDown.vue";
 
 export default {
-  components: { TextInput, List },
+  components: { TextInput, DropDown },
   props: {
     label: {
       type: String,
+      default: "",
     },
     fetchUrl: {
       type: String,
@@ -72,7 +76,7 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener("click", (e) => {
+    window.addEventListener("click", () => {
       if (this.show) this.hideSuggestionsList();
     });
   },
@@ -176,12 +180,12 @@ export default {
         this.index = 0;
       } else this.hideSuggestionsList();
     },
-    hideSuggestionsList(event) {
+    hideSuggestionsList() {
       this.show = false;
       this.index = -1;
     },
     addTag() {
-      const query = this.query;
+      // check query is new tag or could select from suggestions
     },
     addSelectedTag(item, event) {
       console.log("item", item);
@@ -226,7 +230,7 @@ export default {
     margin-bottom: 5px;
   }
 
-  .list-component {
+  .drop-down-component {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;

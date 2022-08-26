@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-component">
+  <ul class="drop-down-component">
     <li
       v-for="(item, index) in items"
       :key="item.id"
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
-.list-component {
+.drop-down-component {
   min-width: 150px;
   max-width: 200px;
   background-color: #fff;
