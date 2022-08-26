@@ -1,9 +1,6 @@
 <template>
   <div class="tag-input-component">
-    <p
-      v-if="label"
-      class="label"
-    >
+    <p v-if="label" class="label">
       {{ label }}
     </p>
 
@@ -21,7 +18,8 @@
         :key="item.id"
         class="tag"
         @click="removeTag(index)"
-      >{{ item.label }}</span>
+        >{{ item.label }}</span
+      >
     </div>
 
     <transition>
@@ -39,9 +37,11 @@
 <script>
 import TextInput from "./TextInput.vue";
 import DropDown from "./DropDown.vue";
+import Utils from "../mixins/utils";
 
 export default {
   components: { TextInput, DropDown },
+  mixins: [Utils],
   props: {
     label: {
       type: String,
@@ -107,10 +107,18 @@ export default {
     },
     keyDown(e) {
       const code = e.keyCode;
-      // if user press enter or comma keys
-      if (code === 13 || (code === 188 && this.matches.length > 0)) {
-        const item = this.matches[this.index];
-        this.addSelectedTag(item);
+      // if user press enter
+      if (code === 13) {
+        if (this.matches.length > 0) {
+          const item = this.matches[this.index];
+          this.addSelectedTag(item);
+        } else this.addTag();
+        e.preventDefault();
+      }
+
+      // if user press comma key
+      else if (code === 188) {
+        this.addTag();
         e.preventDefault();
       }
 
@@ -186,13 +194,36 @@ export default {
     },
     addTag() {
       // check query is new tag or could select from suggestions
+      const query = this.query.trim();
+      const slug = this.$slugify(query);
+      let item = {
+        id: slug,
+        label: query,
+      };
+      let is_new = true;
+
+      // check types query syting match with any exist tags or not
+      let check_label = this.items.find(
+        (i) => i.label.toLowerCase() === query.toLowerCase()
+      );
+      if (check_label) {
+        item = check_label;
+        is_new = false;
+      } else {
+        let check_id = this.items.find((i) => i.id === slug);
+        if (check_id) {
+          item = check_id;
+          is_new = false;
+        }
+      }
+			console.log('is new', is_new);
+      if (is_new) this.items.push(item);
+      this.addSelectedTag(item);
     },
     addSelectedTag(item, event) {
-      console.log("item", item);
-      console.log("event", event);
       if (event) event.preventDefault();
-
-      if (item) this.selected.push(item);
+			console.log(item, this.selected, this.selected.findIndex(i => i.slug === item.slug));
+      if (item && this.selected.findIndex(i => i.id === item.id) < 0) this.selected.push(item);
       this.query = "";
       this.hideSuggestionsList();
     },
