@@ -260,7 +260,7 @@ export default {
 
   .drop-down-component {
     position: absolute;
-    top: calc(100% + 8px);
+    top: 75px;
     left: 0;
   }
 
