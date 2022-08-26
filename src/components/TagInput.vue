@@ -85,7 +85,7 @@ export default {
       if (this.loaded || this.failed || this.on_loading) return;
 
       this.on_loading = true;
-      axios
+      this.$axios
         .get(this.fetchUrl)
         .then(({ data }) => {
           console.log(data);

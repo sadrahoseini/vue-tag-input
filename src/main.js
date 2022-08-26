@@ -5,9 +5,15 @@ import axios from 'axios'
 // styles
 import './assets/styles/main.scss'
 
-window.axios = axios;
+const axiosInstance = axios.create({
+  withCredentials: true,
+})
 
 // mockup app
 makeServer();
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.config.globalProperties.$axios = { ...axiosInstance }
+
+app.mount('#app')
