@@ -1,21 +1,16 @@
 <template>
-  <div
-    id="page"
-    class="container"
-  >
+  <div id="page" class="container">
     <header>
       <h2>
-        <a
-          class="bold"
-          href="https://alibaba.ir"
-          target="_blank"
-        ><i class="ip-brands-alibaba-shawl" /> Alibaba.ir</a>
+        <a class="bold" href="https://alibaba.ir" target="_blank"
+          ><i class="ip-brands-alibaba-shawl"></i> Alibaba.ir</a
+        >
       </h2>
       <p><b>Tag input component</b> code challenge</p>
     </header>
 
     <main>
-      <TagInput 
+      <TagInput
         label="Brands selector"
         fetch-url="/api/brands"
         identifier="brands"
@@ -23,17 +18,16 @@
     </main>
 
     <footer>
-      developed by <a
-        class="bold"
-        href="https://sadrahoseini.ir"
-        target="_blank"
-      >Sadra Hoseini</a>
+      developed by
+      <a class="bold" href="https://sadrahoseini.ir" target="_blank">Sadra Hoseini</a>
+      <a class="bold" href="https://github.com/sadrix" target="_blank"><i class="ip-brands-github"></i></a>
+      <a class="bold" href="https://www.linkedin.com/in/sadra-hoseini/" target="_blank"><i class="ip-brands-linkedin"></i></a>
     </footer>
   </div>
 </template>
 
 <script setup>
-import TagInput from './components/TagInput.vue'
+import TagInput from "./components/TagInput.vue";
 </script>
 
 <style scoped lang="scss">
@@ -47,7 +41,7 @@ header {
   padding: 20px 0;
 
   p {
-    font-family: 'light';
+    font-family: "light";
     margin-top: 5px;
   }
 }
@@ -62,6 +56,13 @@ main {
 }
 
 footer {
-  padding: 20px 0
+  padding: 20px 0;
+
+  i {
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 1.2rem;
+    vertical-align: middle;
+  }
 }
 </style>

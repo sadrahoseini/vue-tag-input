@@ -2,7 +2,7 @@
 :root {
   --c-white: #ffffff;
   --c-white-soft: #f8f8f8;
-  --c-white-mute: #F3F3F3;
+  --c-white-mute: #f5f5f5;
 
   --c-black: #181818;
   --c-black-soft: #222222;
@@ -38,20 +38,6 @@
 
   --section-gap: 160px;
 }
-
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --color-background: var(--c-black);
-//     --color-background-soft: var(--c-black-soft);
-//     --color-background-mute: var(--c-black-mute);
-
-//     --color-border: var(--c-divider-dark-2);
-//     --color-border-hover: var(--c-divider-dark-1);
-
-//     --color-heading: var(--c-text-dark-1);
-//     --color-text: var(--c-text-dark-2);
-//   }
-// }
 
 @font-face {
   font-family: 'regular';

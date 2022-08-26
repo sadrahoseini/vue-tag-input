@@ -87,7 +87,7 @@ export default {
   }
 
   &:focus {
-    border: 1px solid #f1f2f3;
+    border: 1px solid #eaeaeb;
   }
 }
 </style>

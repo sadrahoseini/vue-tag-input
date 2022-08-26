@@ -219,7 +219,8 @@ export default {
     },
     addSelectedTag(item, event) {
       if (event) event.preventDefault();
-      if (item && this.selected.findIndex(i => i.id === item.id) < 0) this.selected.push(item);
+      if (item && this.selected.findIndex((i) => i.id === item.id) < 0)
+        this.selected.push(item);
       this.query = "";
       this.hideSuggestionsList();
     },
@@ -281,5 +282,16 @@ export default {
       }
     }
   }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(10px)
 }
 </style>
