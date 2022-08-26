@@ -9,7 +9,7 @@
       <TagInput 
         label="Brands selector"
         fetch-url="/api/brands"
-        identifier="brnads"/>
+        identifier="brands"/>
     </main>
 
     <footer>
@@ -40,6 +40,11 @@ header {
 
 main {
   padding: 20px 0;
+
+  .tag-input-component {
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 footer {

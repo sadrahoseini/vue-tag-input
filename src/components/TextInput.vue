@@ -1,15 +1,16 @@
 <template>
   <input
-    :value="value"
+    :value="modelValue"
     type="text"
     class="text-input-component"
     :name="name"
     :disabled="disabled"
     :placeholder="placeholder"
+		@click="click"
     @input="input"
     @keydown="keydown"
     @keyup="keyup"
-    @blue="blur"
+    @blur="blur"
     @focus="focus"
   />
 </template>
@@ -17,7 +18,7 @@
 <script>
 export default {
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: "",
     },
@@ -34,12 +35,25 @@ export default {
       default: false,
     },
   },
-  emits: ["changed", "input", "keydown", "keyup", "focus", "blur"],
+  emits: [
+    "changed",
+    "input",
+    "keydown",
+    "keyup",
+    "focus",
+    "blur",
+    "update:modelValue",
+		"click"
+  ],
   methods: {
     input(event) {
       let val = event.target.value;
       this.$emit("changed", val);
       this.$emit("input", val);
+      this.$emit("update:modelValue", val);
+    },
+    click(event) {
+      this.$emit("click", event, this.name);
     },
     keydown(event) {
       this.$emit("keydown", event, this.name);
@@ -65,6 +79,8 @@ export default {
   border: 1px solid #f8f8f8;
   border-radius: 8px;
   line-height: 20px;
+	display: block;
+	width: 100%;
 
   &::placeholder {
     color: #babfc7;

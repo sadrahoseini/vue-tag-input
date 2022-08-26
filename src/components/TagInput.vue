@@ -5,9 +5,26 @@
       v-model="query"
       placeholder="Add brand..."
       @focus="loadSuggestions()"
+      @click="inputClick"
+      @keydown="keyDown"
     />
+    <div class="tags">
+      <span
+        class="tag"
+        v-for="item in selected"
+        :key="item.id"
+        @click="removeTag(index)"
+        >{{ item.label }}</span
+      >
+    </div>
     <transition>
-      <List v-if="show" :items="matches" :active-index="index" />
+      <List
+        v-if="show"
+        :items="matches"
+        :active-index="index"
+        @hover="changeSuggestionHover"
+        @select="addSelectedTag"
+      />
     </transition>
   </div>
 </template>
@@ -25,9 +42,12 @@ export default {
       show: false,
       items: [],
       matches: [],
+      selected: [],
       on_loading: false,
       loaded: false,
       failed: false,
+      timer: null,
+      delay: 100,
     };
   },
   props: {
@@ -42,21 +62,29 @@ export default {
       type: String,
       required: true,
     },
+    maxSuggestionsCount: {
+      type: Number,
+      default: 10,
+    },
   },
   methods: {
     loadSuggestions() {
-      if (this.loaded || this.failed) return;
+      if (this.loaded || this.failed || this.on_loading) return;
 
+      this.on_loading = true;
       axios
         .get(this.fetchUrl)
         .then(({ data }) => {
           console.log(data);
-          // this.items = data[this.identifier];
+          this.items = data[this.identifier];
           this.loaded = true;
           this.failed = false;
+          this.on_loading = false;
+          this.updateSuggestionsList();
         })
         .catch((error) => {
           this.failed = true;
+          this.on_loading = false;
           console.log(error);
           console.error(
             "Something goes wrong when app want to fetch brands list...!",
@@ -64,14 +92,159 @@ export default {
           );
         });
     },
+    keyDown(e) {
+      const code = e.keyCode;
+      // if user press enter or comma keys
+      if (code === 13 || (code === 188 && this.matches.length > 0)) {
+        const item = this.matches[this.index];
+        this.addSelectedTag(item);
+        e.preventDefault();
+      }
+
+      // hide suggestions list if user press escape
+      else if (code === 27) {
+        this.hideSuggestionsList();
+        e.preventDefault();
+      }
+
+      // change active suggestion if user press up key
+      else if (code === 38) {
+        this.suggestionsUp();
+        e.preventDefault();
+      }
+
+      // change active suggestion if user press down key
+      else if (code === 40) {
+        this.suggestionsDown();
+        e.preventDefault();
+      } else this.updateSuggestionsList();
+    },
+    changeSuggestionHover(index) {
+      this.index = index;
+    },
+    updateSuggestionsList() {
+      if (this.loaded) {
+        // reset type timer
+        if (this.timer) {
+          clearTimeout(this.timer);
+          this.timer = null;
+        }
+
+        // call find suggestions method
+        this.timer = setTimeout(() => {
+          let query = this.query.trim();
+          if (query) query = query.toLowerCase();
+          this.findSuggestions(query);
+        }, this.delay);
+      }
+    },
+    findSuggestions(query) {
+      if (!this.items || this.items.length < 1) return;
+
+      if (query.length > 0) {
+        let matched = [];
+
+        // loop throw tags items
+        this.items.map((item) => {
+          if (this.selected.findIndex((i) => i.id === item.id) > -1) return;
+          const label = item.label.toLowerCase();
+          if (
+            label.includes(query) &&
+            matched.length < this.maxSuggestionsCount
+          )
+            matched.push(item);
+        });
+        this.matches = matched;
+
+        this.matches.length > 0
+          ? this.showSuggestionsList()
+          : this.hideSuggestionsList();
+      } else this.hideSuggestionsList();
+    },
+    showSuggestionsList() {
+      if (this.matches.length > 0) {
+        this.show = true;
+        this.index = 0;
+      } else this.hideSuggestionsList();
+    },
+    hideSuggestionsList(event) {
+      this.show = false;
+      this.index = -1;
+    },
+    addTag() {
+      const query = this.query;
+    },
+    addSelectedTag(item, event) {
+      console.log("item", item);
+      console.log("event", event);
+      if (event) event.preventDefault();
+
+      if (item) this.selected.push(item);
+      this.query = "";
+      this.hideSuggestionsList();
+    },
+    removeTag(index) {
+      this.selected.splice(index, 1);
+    },
+    suggestionsDown() {
+      let length = this.matches.length;
+      let index = this.index;
+      if (this.show && length > 0) {
+        if (index < length - 1) this.index++;
+        else this.index = 0;
+      }
+    },
+    suggestionsUp() {
+      let length = this.matches.length;
+      let index = this.index;
+      if (this.show && length > 0) {
+        if (index > 0) this.index--;
+        else this.index = length - 1;
+      }
+    },
+    inputClick(e) {
+      e.stopPropagation();
+    },
+  },
+  mounted() {
+    window.addEventListener("click", (e) => {
+      if (this.show) this.hideSuggestionsList();
+    });
   },
 };
 </script>
 
 <style lang="scss">
 .tag-input-component {
+  position: relative;
+
   .label {
     margin-bottom: 5px;
+  }
+
+  .list-component {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+  }
+
+  .tags {
+    .tag {
+      display: inline-block;
+      margin: 8px 8px 0 0;
+      padding: 2px 8px;
+      line-height: 16px;
+      font-size: 14px;
+      background-color: #dde1ee;
+      color: #3e5bc4;
+      cursor: pointer;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: #f2e1e1;
+        color: #ca3b57;
+      }
+    }
   }
 }
 </style>

@@ -1,34 +1,63 @@
 <template>
-  <ul class="list">
-    <ListItem 
-      v-for="(item, index) in items" 
+  <ul class="list-component">
+    <li
+      v-for="(item, index) in items"
       :key="item.id"
-      :item="item"
-      :active="activeIndex == index"
-      @hover="hover"
-      @click="select"
-      />
+      :class="{ active: activeIndex === index }"
+      @mouseenter="hover(index, $event)"
+      @click="select(item, $event)"
+    >
+      {{ item.label }}
+    </li>
   </ul>
 </template>
 
 <script>
-import ListItem from "./ListItem.vue";
 export default {
-  components: [ListItem],
   props: {
     items: {
       type: Array,
-      required: true
+      required: true,
     },
     activeIndex: {
       type: Number,
-      default: -1
-    }
+      default: -1,
+    },
   },
+  emits: ["hover", "select"],
   methods: {
-    hover(item) {
-      this.$emit('hover', t)
-    }
-  }
+    hover(index, e) {
+      this.$emit("hover", index, e);
+    },
+    select(item, e) {
+      this.$emit("select", item, e);
+    },
+  },
 };
 </script>
+
+<style lang="scss">
+.list-component {
+  min-width: 150px;
+  max-width: 200px;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  display: grid;
+  list-style: none;
+
+  li {
+    padding: 8px;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &.active {
+      background-color: #f8f8f8;
+    }
+  }
+}
+</style>
