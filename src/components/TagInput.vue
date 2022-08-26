@@ -14,7 +14,7 @@
 
     <div class="tags">
       <span
-        v-for="item in selected"
+        v-for="(item, index) in selected"
         :key="item.id"
         class="tag"
         @click="removeTag(index)"
