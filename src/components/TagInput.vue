@@ -6,7 +6,7 @@
 
     <TextInput
       v-model="query"
-      placeholder="Add brand..."
+      :placeholder="placeholder"
       @focus="loadSuggestions()"
       @click="inputClick"
       @keydown="keyDown"
@@ -46,6 +46,10 @@ export default {
     label: {
       type: String,
       default: "",
+    },
+    placeholder: {
+      type: String,
+      default: "Add Tags...",
     },
     fetchUrl: {
       type: String,

@@ -36,7 +36,7 @@ export default {
     },
   },
   emits: [
-    "changed",
+    "change",
     "input",
     "keydown",
     "keyup",
@@ -48,7 +48,7 @@ export default {
   methods: {
     input(event) {
       let val = event.target.value;
-      this.$emit("changed", val);
+      this.$emit("change", val);
       this.$emit("input", val);
       this.$emit("update:modelValue", val);
     },
