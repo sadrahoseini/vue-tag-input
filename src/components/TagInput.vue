@@ -60,6 +60,9 @@ export default {
       default: 10,
     },
   },
+  emits: [
+    "change",
+  ],
   data() {
     return {
       query: "",
@@ -222,6 +225,7 @@ export default {
       if (item && this.selected.findIndex((i) => i.id === item.id) < 0)
         this.selected.push(item);
       this.query = "";
+      this.$emit('change', this.selected)
       this.hideSuggestionsList();
     },
     removeTag(index) {
@@ -292,6 +296,6 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
-  transform: translateY(10px)
+  transform: translateY(10px);
 }
 </style>
