@@ -5,11 +5,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
-    "test:unit": "vitest --environment jsdom"
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
   },
   "dependencies": {
+    "@cypress/vue": "^3.1.0",
+    "@cypress/webpack-dev-server": "^2.2.0",
     "axios": "^0.27.2",
+    "cypress": "^10.6.0",
     "vue": "^3.2.37",
     "vue-axios": "^3.4.1"
   },
@@ -21,7 +23,6 @@
     "jsdom": "^20.0.0",
     "miragejs": "^0.1.45",
     "sass": "^1.54.5",
-    "vite": "^3.0.4",
-    "vitest": "^0.21.0"
+    "vite": "^3.0.4"
   }
 }
