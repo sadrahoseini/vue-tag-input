@@ -59,7 +59,9 @@ As soon as you installed node and all dependencies of this project, You can star
 npm run dev
 ```
 
-### Compile and Minify for Production
+<br>
+
+## Compile and Minify for Production
 
 To make build production ready version of project, you can run this command:
 
@@ -67,3 +69,17 @@ To make build production ready version of project, you can run this command:
 npm run build
 ```
 You can find build version on ```/dist``` path on project root directory.
+
+<br>
+
+## Tests ✅
+
+For testing of our components Behavior Driven Development (BDD) and check if user stories which defined for our components working correcly, we use [Cypress](https://www.cypress.io/) testing library which has greate integrations for Vue.js apps, also projects that created with Vite.
+
+If you want check test writen for component simply run this command:
+
+```sh
+npx cypress open
+```
+
+After cypress's dev-server running correctly you can select ```component testing``` and testing ```browser```, then from list of ```specs``` defined in cypress web app, check all stories work correctly or have any error for each part.
