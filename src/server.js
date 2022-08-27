@@ -5,24 +5,24 @@ export function makeServer({ environment = "development" } = {}) {
 		environment,
 
 		models: {
-			brand: Model,
+			tag: Model,
 		},
 
 		routes() {
 			this.namespace = "/api"
 
-			this.get("/brands")
+			this.get("/tags")
 		},
 
 		seeds(server) {
-			server.create("brand", { id: 'apple', label: 'Apple' })
-			server.create("brand", { id: 'gillette', label: 'Gillette' })
-			server.create("brand", { id: 'mastercard', label: 'Mastercard' })
-			server.create("brand", { id: 'the-walt-disney-company', label: 'The Walt Disney Company' })
-			server.create("brand", { id: 'facebook', label: 'Facebook' })
-			server.create("brand", { id: 'louis-vuitton', label: 'Louis Vuitton' })
-			server.create("brand", { id: 'sadrix', label: 'Sadrix' })
-			server.create("brand", { id: 'alibaba', label: 'Alibaba' })
+			server.create("tag", { id: 'apple', label: 'Apple' })
+			server.create("tag", { id: 'gillette', label: 'Gillette' })
+			server.create("tag", { id: 'mastercard', label: 'Mastercard' })
+			server.create("tag", { id: 'the-walt-disney-company', label: 'The Walt Disney Company' })
+			server.create("tag", { id: 'facebook', label: 'Facebook' })
+			server.create("tag", { id: 'louis-vuitton', label: 'Louis Vuitton' })
+			server.create("tag", { id: 'sadrix', label: 'Sadrix' })
+			server.create("tag", { id: 'alibaba', label: 'Alibaba' })
 		},
 	})
 

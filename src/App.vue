@@ -1,27 +1,46 @@
 <template>
-  <div id="page" class="container">
+  <div
+    id="page"
+    class="container"
+  >
     <header>
       <h2>
-        <a class="bold" href="https://alibaba.ir" target="_blank"
-          ><i class="ip-brands-alibaba-shawl"></i> Alibaba.ir</a
+        <a
+          class="bold"
+          href="https://alibaba.ir"
+          target="_blank"
         >
+          <i class="ip-brands-alibaba-shawl" /> Alibaba.ir
+        </a>
       </h2>
       <p><b>Tag input component</b> code challenge</p>
     </header>
 
     <main>
       <TagInput
-        label="Brands selector"
-        fetch-url="/api/brands"
-        identifier="brands"
+        label="Tags selector"
+        fetch-url="/api/tags"
+        identifier="tags"
       />
     </main>
 
     <footer>
       developed by
-      <a class="bold" href="https://sadrahoseini.ir" target="_blank">Sadra Hoseini</a>
-      <a class="bold" href="https://github.com/sadrix" target="_blank"><i class="ip-brands-github"></i></a>
-      <a class="bold" href="https://www.linkedin.com/in/sadra-hoseini/" target="_blank"><i class="ip-brands-linkedin"></i></a>
+      <a
+        class="bold"
+        href="https://sadrahoseini.ir"
+        target="_blank"
+      >Sadra Hoseini</a>
+      <a
+        class="bold"
+        href="https://github.com/sadrix"
+        target="_blank"
+      ><i class="ip-brands-github" /></a>
+      <a
+        class="bold"
+        href="https://www.linkedin.com/in/sadra-hoseini/"
+        target="_blank"
+      ><i class="ip-brands-linkedin" /></a>
     </footer>
   </div>
 </template>

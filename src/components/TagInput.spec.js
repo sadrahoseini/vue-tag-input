@@ -15,7 +15,7 @@ describe('Type in tag input and press Enter to add new tag', () => {
       }
     })
 
-    const typeQuery = 'Sadrix';
+    // const typeQuery = 'Sadrix';
 
     // cy.get('input').focus().wait(2000).type(typeQuery)
 

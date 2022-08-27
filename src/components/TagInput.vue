@@ -1,6 +1,9 @@
 <template>
   <div class="tag-input-component">
-    <p v-if="label" class="label">
+    <p
+      v-if="label"
+      class="label"
+    >
       {{ label }}
     </p>
 
@@ -14,12 +17,11 @@
 
     <div class="tags">
       <span
-        v-for="(item, index) in selected"
+        v-for="(item, i) in selected"
         :key="item.id"
         class="tag"
-        @click="removeTag(index)"
-        >{{ item.label }}</span
-      >
+        @click="removeTag(i)"
+      >{{ item.label }}</span>
     </div>
 
     <transition>
@@ -101,7 +103,7 @@ export default {
           this.on_loading = false;
           this.updateSuggestionsList();
         })
-        .catch((error) => {
+        .catch(() => {
           this.failed = true;
           this.on_loading = false;
           console.error(

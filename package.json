@@ -19,6 +19,7 @@
     "@vitejs/plugin-vue": "^3.0.1",
     "@vue/test-utils": "^2.0.2",
     "eslint": "^8.22.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^9.4.0",
     "jsdom": "^20.0.0",
     "miragejs": "^0.1.45",
