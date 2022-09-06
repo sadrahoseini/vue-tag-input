@@ -19,6 +19,7 @@
       <span
         v-for="(item, i) in selected"
         :key="item.id"
+        v-cap-first
         class="tag"
         @click="removeTag(i)"
       >{{ item.label }}</span>
@@ -39,7 +40,7 @@
 <script>
 import TextInput from "./TextInput.vue";
 import DropDown from "./DropDown.vue";
-import Utils from "../mixins/utils";
+import Utils from "../mixins/Utils";
 
 export default {
   components: { TextInput, DropDown },

@@ -3,6 +3,7 @@
     <li
       v-for="(item, index) in items"
       :key="item.id"
+      v-cap-first
       :class="{ active: activeIndex === index }"
       @mouseenter="hover(index, $event)"
       @click="select(item, $event)"
